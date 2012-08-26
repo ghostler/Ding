@@ -77,12 +77,13 @@ class HttpAction extends Action
      *
      * @param string $id        Url.
      * @param array  $arguments Arguments posted (or getted :P).
+     * @param string $method    Http request method.
      *
      * @return void
      */
-    public function __construct($id, array $arguments = array())
+    public function __construct($id, array $arguments = array(), $method = 'GET')
     {
         parent::__construct($id, $arguments);
-        $this->_method = 'GET';
+        $this->_method = $method;
     }
 }

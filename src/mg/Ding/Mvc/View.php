@@ -49,7 +49,7 @@ abstract class View
     /**
      * Returns this view name.
      *
-     * @return string
+     * @return ModelAndView
      */
     public function getModelAndView()
     {
@@ -60,8 +60,6 @@ abstract class View
      * Constructor.
      *
      * @param ModelAndView $modelAndView Model to render.
-     *
-     * @return void
      */
     protected function __construct(ModelAndView $modelAndView)
     {

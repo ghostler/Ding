@@ -52,7 +52,7 @@ class HttpUrlMapper implements IMapper, IContainerAware, ILoggerAware
 {
     /**
      * log4php logger or our own.
-     * @var Logger
+     * @var \Logger
      */
     private $_logger;
 
@@ -66,6 +66,8 @@ class HttpUrlMapper implements IMapper, IContainerAware, ILoggerAware
      * @var string[]
      */
     private static $_annotatedControllers = array();
+
+    private $_container;
 
     /**
      * Used from the Mvc driver to add controllers found by annotations.
@@ -110,7 +112,7 @@ class HttpUrlMapper implements IMapper, IContainerAware, ILoggerAware
      */
     public function setContainer(IContainer $container)
     {
-        $this->container = $container;
+        $this->_container = $container;
     }
 
     /**
@@ -170,7 +172,7 @@ class HttpUrlMapper implements IMapper, IContainerAware, ILoggerAware
             $action = explode('/', $action);
             $action = $action[0];
             if (!is_object($controller)) {
-                $controller = $this->container->getBean($controller);
+                $controller = $this->_container->getBean($controller);
                 $this->_logger->debug(
                 	"Found as annotated controller: "
                 	. "$controllerUrl in " . get_class($controller)
@@ -193,8 +195,6 @@ class HttpUrlMapper implements IMapper, IContainerAware, ILoggerAware
 
     /**
      * Constructor.
-     *
-     * @return void
      */
     public function __construct()
     {

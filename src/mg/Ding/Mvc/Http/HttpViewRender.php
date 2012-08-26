@@ -81,7 +81,7 @@ class HttpViewRender implements IViewRender, IMessageSourceAware
         /**
          * @todo is there a better way to do this?
          */
-        global $modelAndView;
+//        global $modelAndView;
         $modelAndView = $view->getModelAndView();
         /**
          * @todo render headers: does this belong here?

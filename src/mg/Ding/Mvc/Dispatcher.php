@@ -48,7 +48,7 @@ abstract class Dispatcher implements ILoggerAware, IReflectionFactoryAware
 {
     /**
      * log4php logger or our own.
-     * @var Logger
+     * @var \Logger
      */
     private $_logger;
     /**
@@ -70,7 +70,7 @@ abstract class Dispatcher implements ILoggerAware, IReflectionFactoryAware
      * @param Action  $action Action to dispatch.
      *
      * @throws MvcException
-     * @return void
+     * @return bool|ModelAndView
      */
     public function dispatch(DispatchInfo $dispatchInfo)
     {

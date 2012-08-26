@@ -145,8 +145,7 @@ class HttpFrontController
             if (!empty($_POST)) {
                 $variables = array_merge($variables, $_POST);
             }
-            $action = new HttpAction($url, $variables);
-            $action->setMethod($method);
+            $action = new HttpAction($url, $variables, $method);
             $mapper = $container->getBean('HttpUrlMapper');
             self::dispatch($dispatcher, $viewResolver, $action, $mapper, $render);
         } catch(\Exception $exception) {

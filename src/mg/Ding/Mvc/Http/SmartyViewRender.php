@@ -70,7 +70,7 @@ class SmartyViewRender implements IViewRender
         /**
          * @todo is there a better way to do this?
          */
-        global $modelAndView;
+//        global $modelAndView;
         $modelAndView = $view->getModelAndView();
         require_once('Smarty.class.php');
         $smarty = new \Smarty();

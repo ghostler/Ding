@@ -29,7 +29,7 @@ namespace Ding\Mvc\Http;
 
 use Ding\Mvc\IViewRender;
 use Ding\Mvc\View;
-
+use Ding\Mvc\Exception\MvcException;
 /**
  * Twig view render.
  *
@@ -70,13 +70,16 @@ class TwigViewRender implements IViewRender
         /**
          * @todo is there a better way to do this?
          */
-        global $modelAndView;
+        //global $modelAndView;
         $modelAndView = $view->getModelAndView();
         require_once 'Twig' . DIRECTORY_SEPARATOR . 'Autoloader.php';
         \Twig_Autoloader::register();
         $loader = new \Twig_Loader_Filesystem(dirname($view->getPath()));
         $twig = new \Twig_Environment($loader, array($this->_twigOptions));
         $template = $twig->loadTemplate(basename($view->getPath()));
-        echo $template->render(array('vars' => $modelAndView->getModel()));
+        if (!is_array($modelAndView->getModel())) {
+            throw new MvcException('Data for template must be array.');
+        }
+        echo $template->render($modelAndView->getModel());
     }
 }
